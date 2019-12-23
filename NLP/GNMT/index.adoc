@@ -62,7 +62,8 @@ image::..\images\seq2seq.png[]
 === Encoder\Decoder
 
 An encoder neural network reads and encodes a source sentence into a fixed-length vector. +
-A decoder outputs a translation from the encoded vector. +
+A decoder "translates" the encoded vector. 
+
 The whole encoder–decoder system, is jointly trained to maximize the probability of a correct translation given a source sentence.
 
 .Encoder Decoder architecture
@@ -70,7 +71,7 @@ image::..\images\enc-dec.png[,70%]
 
 === But, how?
 
-The Encoder & Decoder are both recurrent neural networks (RNN). +
+The encoder and decoder are both recurrent neural networks (RNN). +
 Usually, a more complex types of RNN are used, such as Gated recurrent units (GRU) & Long-Short-Term-Memory (LSTM).
 
 .Encoding “the cat likes to eat pizza”
