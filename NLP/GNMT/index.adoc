@@ -42,7 +42,7 @@ The strength of NMT lies in its ability to learn directly, in an end-to-end fash
 --
 
 [%notitle]
-=== Quote
+== Quote
 
 [quote,Nelson Mandela]
 ____
@@ -103,7 +103,11 @@ image::..\images\gnmt.gif[]
 
 [.notes]
 --
-First, the network encodes the Chinese words as a list of vectors, where each vector represents the meaning of all words read so far (“Encoder”). Once the entire sentence is read, the decoder begins, generating the English sentence one word at a time (“Decoder”). To generate the translated word at each step, the decoder pays attention to a weighted distribution over the encoded Chinese vectors most relevant to generate the English word (“Attention”; the blue link transparency represents how much the decoder pays attention to an encoded word).
+First, the network encodes the Chinese words as a list of vectors, where each vector represents the meaning of all words read so far (“Encoder”). 
+
+Once the entire sentence is read, the decoder begins, generating the English sentence one word at a time (“Decoder”). 
+
+To generate the translated word at each step, the decoder pays attention to a weighted distribution over the encoded Chinese vectors most relevant to generate the English word (“Attention”; the blue link transparency represents how much the decoder pays attention to an encoded word).
 --
 
 == Model Architecture
