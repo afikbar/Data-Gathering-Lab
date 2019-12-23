@@ -19,9 +19,6 @@ ____
 
 We intend to predict the *true* coordinates of a bus stop.
 
-From our data exploration, we've discovered some inconsitency in the data
-
-
 .Bus Stop 415 Heatmap
 image::../images/stop-415-heatmap.png[,70%]
 
