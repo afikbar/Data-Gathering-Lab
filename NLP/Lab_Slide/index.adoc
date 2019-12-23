@@ -82,7 +82,7 @@ We will use Levenshtien distance to filter all observations which are not __clos
 
 
 ====
-We defined __close__ with Levenshtien distance < `0.2`.
+We defined __close__ with Levenshtien distance < `0.5`.
 ====
 
 
@@ -94,7 +94,7 @@ We defined __close__ with Levenshtien distance < `0.2`.
 |Task 3  | Task 4
 
 |0.10125
-|__0.08341__
+|__0.2739__
 
 |====================
 
