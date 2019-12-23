@@ -1,1 +1,50 @@
-<meta http-equiv="refresh" content="0; url=/NLP/GNMT/index.html" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.block {
+  display: inline-block;
+  width: 80%;
+  border: none;
+  margin: 10px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  top: 50%;
+}
+
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-item + .flex-item {
+  margin-left: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="flex">
+  <button class="block" onclick="myFunction('GNMT')">GNMT</button>
+  <button class="block" onclick="myFunction('Lab_Slide')">Lab</button>
+</div>
+
+<script>
+function myFunction(slide) {
+  location.replace("https://afikbar.github.io/Data-Gathering-Lab/NLP/${slide}/index.html")
+}
+</script>
+
+</body>
+</html> 
