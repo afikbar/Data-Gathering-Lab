@@ -66,6 +66,10 @@ We used Levenshtien distance (normalized) to calculate the distance between name
 Levenshtein distance between two words is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.
 
 
+== Levenshtien On Data
+
+image::../images/lev-hist.png[]
+
 == Improve the prediction
 
 image::../images/better.gif[,70%]
