@@ -18,9 +18,6 @@ Involves rules for converting text. The rules are often developed by linguists a
 * Statistical Machine Translation +
 Given a sentence __T__, we seek the sentence __S__ from which the translator produced __T__. Thus, we wish to maximize __Pr(S|T)__.
 
-* Neural Machine Translation +
-The strength of NMT lies in its ability to learn directly, in an end-to-end fashion, the mapping from input text to associated output text.
-
 [.notes]
 --
 Given a sequence of text in a source language, there is no one single best translation of that text to another language. This is because of the natural ambiguity and flexibility of human language.
@@ -29,15 +26,23 @@ Given a sequence of text in a source language, there is no one single best trans
 The key limitations of the classical machine translation approaches are both the expertise required to develop the rules, and the vast number of rules and exceptions required.
 
 * The approach is data-driven, requiring only a corpus of examples with both source and target language text. This means linguists are not longer required to specify the rules of translation.
+--
 
+
+=== Neural Machine Translation
+
+Neural machine translation, or NMT for short, is the use of neural network models to learn a statistical model for machine translation.
+
+The strength of NMT lies in its ability to learn directly, in an end-to-end fashion, the mapping from input text to associated output text.
+
+[.notes]
+--
 * Unlike the traditional phrase-based translation system which consists of many small sub-components that are tuned separately, neural machine translation attempts to build and train a single, large neural network that reads a sentence and outputs a correct translation.
 
 --
 
 [%notitle]
 === Quote
-
-image::..\images\translate-models.png[,60%]
 
 [quote,Nelson Mandela]
 ____
@@ -133,28 +138,21 @@ Depending on the output vocabulary size we either have them run on the same GPUs
 
 == Translation
 
-[width="100%", cols="1,5"]
+[width="100%",h, cols="1,5"]
 |====================
-| Input     | Uno no es lo que es por lo que escribe, sino por lo que ha leído. 
+| Input     | Uno no es lo que es por lo que escribe, sino por lo que ha leído.
 | SMT       | One is not what is for what he writes, but for what he has read. 
 | GNMT      | You are not what you write, but what you have read. 
-| Human     | You are who you are not because of what you have written, but because of what you have read.
 |====================
+
+[.notes]
+--
+You are who you are not because of what you have written, but because of what you have read.
+--
 
 == Overall Results
 
-[width="70%",options="header"]
-|====================
-|Languages   | SMT | GNMT | Human | Improvement 
-
-|English->Spanish |4.885 |5.428  |5.504 |87%
-|English->French | 4.932 | 5.295 | 5.496 | 64%
-|English->Chinese | 4.035 | 4.594 | 4.987 | 58%
-|Spanish->English | 4.872 | 5.187 | 5.372 | 63%
-|French->English | 5.046 | 5.343 | 5.404 | 83%
-|Chinese->English | 3.694 | 4.263 | 4.636 | 60%
-
-|====================
+image::..\images\translate-models.png[]
 
 [.notes]
 --
