@@ -70,8 +70,8 @@ image::..\images\enc-dec.png[,70%]
 
 === But, how?
 
-Encoder and the Decoder are both recurrent neural networks (RNN).
-A more complex types of RNN are usually used, such as Gated recurrent units (GRU) & Long-Short-Term-Memory (LSTM).
+The Encoder & Decoder are both recurrent neural networks (RNN). +
+Usually, a more complex types of RNN are used, such as Gated recurrent units (GRU) & Long-Short-Term-Memory (LSTM).
 
 .Encoding “the cat likes to eat pizza”
 image::..\images\encoder-exp.png[]
@@ -90,8 +90,8 @@ image::..\images\res-lstm.png[]
 
 [.notes]
 --
-With residual connections, input to the bottom LSTM layer ( x_i^0 ’s to LSTM_1) 
-is element-wise added to the output from the bottom layer ( x_i^1 ’s). This sum is then fed to the top LSTM layer (LSTM_2) as the new input.
+With residual connections, input to the bottom LSTM layer ( x~i~^0^ ’s to LSTM~1~) 
+is element-wise added to the output from the bottom layer ( x~i~^1^ ’s). This sum is then fed to the top LSTM layer (LSTM~2~) as the new input.
 --
 
 
@@ -103,11 +103,14 @@ image::..\images\gnmt.gif[]
 
 [.notes]
 --
-First, the network encodes the Chinese words as a list of vectors, where each vector represents the meaning of all words read so far (“Encoder”). 
 
-Once the entire sentence is read, the decoder begins, generating the English sentence one word at a time (“Decoder”). 
+* Encodes Chinese words as list of vectors.
+* Each vector represent the meaning of all words so far.
 
-To generate the translated word at each step, the decoder pays attention to a weighted distribution over the encoded Chinese vectors most relevant to generate the English word (“Attention”; the blue link transparency represents how much the decoder pays attention to an encoded word).
+* After Encoder finish, Decoder translate one word at a time
+ 
+* Attention: weighted distribution over encoded Chinese vectors most relevant to generate the English word.
+
 --
 
 == Model Architecture
@@ -116,7 +119,11 @@ image::..\images\entire-model.png[]
 
 [.notes]
 --
-On the left is the encoder network, on the right is the decoder network, in the middle is the attention module. 
+* 8 Encoder LSTM Layers
+** Pink left->right, Green right->left
+** Residual connections from 3rd layer
+** First two layers are considers as bi-directional LSTM.
+
 
 The bottom encoder layer is bi-directional: the pink nodes gather information from left to right while the green
 nodes gather information from right to left. 
@@ -151,6 +158,7 @@ Depending on the output vocabulary size we either have them run on the same GPUs
 
 [.notes]
 --
+Human: +
 You are who you are not because of what you have written, but because of what you have read.
 --
 

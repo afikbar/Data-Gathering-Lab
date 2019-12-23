@@ -9,7 +9,6 @@ Shahar Rotem; Afik Bar
 
 == Prediction Task
 
-
 We intend to predict the *true* coordinates of a bus stop.
 
 From our data exploration, we've discovered some uncertainty in the data, in the following image, we've created a heatmap for all the reported stops at bus stop `415`.
