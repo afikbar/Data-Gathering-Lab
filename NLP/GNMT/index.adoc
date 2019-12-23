@@ -182,21 +182,25 @@ image::..\images\zero-shot.gif[]
 
 [.notes]
 --
-The proposed architecture requires no change in the base GNMT system, but instead uses an additional “token” at the beginning of the input sentence to specify the required target language to translate to. 
+* No change in GNMT, additional "token" to specify target language
 
-In addition to improving translation quality, our method also enables “Zero-Shot Translation” — translation between language pairs never seen explicitly by the system.
+* Improving translation & “Zero-Shot Translation” — translation between language pairs never seen explicitly by the system.
 
-Here’s how it works. 
-Let’s say we train a multilingual system with Japanese⇄English and Korean⇄English examples, shown by the solid blue lines in the animation. 
-Our multilingual system, with the same size as a single GNMT system, shares its parameters to translate between these four different language pairs. 
-This sharing enables the system to transfer the “translation knowledge” from one language pair to the others. 
+Here’s how it works.
+
+* Train on Japanese⇄English and Korean⇄English examples ([blue]#Solid blue#)
+
+* The system shares its trained parameters between four different language systems.
+
+* This sharing enables the system to transfer the “translation knowledge” from one language pair to the others. +
 This transfer learning and the need to translate between multiple languages forces the system to better use its modeling power.
 
-This inspired us to ask the following question: Can we translate between a language pair which the system has never seen before? 
-An example of this would be translations between Korean and Japanese where Korean⇄Japanese examples were not shown to the system. 
+* Translate between language pair never seen before (between Korean and Japanese)
 
-Impressively, the answer is yes — it can generate reasonable Korean⇄Japanese translations, even though it has never been taught to do so. 
-We call this “zero-shot” translation, shown by the yellow dotted lines in the animation. 
+* It can generate reasonable Korean⇄Japanese translations
+
+* Zero-Shot translation ([yellow]#yellow dotted lines#).
+ 
 To the best of our knowledge, this is the first time this type of transfer learning has worked in Machine Translation.
 
 --
