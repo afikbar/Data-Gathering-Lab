@@ -1,0 +1,204 @@
+include::_settings_reveal.adoc[]
+
+// include::_settings_deck.adoc[]
+
+= Neural Machine Translation
+
+== Google’s Neural Machine Translation
+
+Bridging the Gap between Human and Machine Translation
+
+
+== Introduction
+
+[%step]
+* Machine Translation +
+Involves rules for converting text. The rules are often developed by linguists and may operate at the lexical, syntactic, or semantic level.
+
+* Statistical Machine Translation +
+Given a sentence __T__, we seek the sentence __S__ from which the translator produced __T__. Thus, we wish to maximize __Pr(S|T)__.
+
+* Neural Machine Translation +
+The strength of NMT lies in its ability to learn directly, in an end-to-end fashion, the mapping from input text to associated output text.
+
+[.notes]
+--
+Given a sequence of text in a source language, there is no one single best translation of that text to another language. This is because of the natural ambiguity and flexibility of human language.
+
+* Rule-based Machine Translation, or RBMT. +
+The key limitations of the classical machine translation approaches are both the expertise required to develop the rules, and the vast number of rules and exceptions required.
+
+* The approach is data-driven, requiring only a corpus of examples with both source and target language text. This means linguists are not longer required to specify the rules of translation.
+
+* Unlike the traditional phrase-based translation system which consists of many small sub-components that are tuned separately, neural machine translation attempts to build and train a single, large neural network that reads a sentence and outputs a correct translation.
+
+--
+
+[%notitle]
+=== Quote
+
+image::..\images\translate-models.png[,60%]
+
+[quote,Nelson Mandela]
+____
+If you talk to a man in a language he understands, that goes to his head. +
+If you talk to him in his own language, that goes to his heart.
+____
+
+
+== Seq2Seq Modeling
+
+Since both the input and output are sentences, we can address them as a sequence of words going in and out of a model.
+This is the basic idea of Sequence-to-Sequence modeling.
+
+.Sequence-to-Sequence model
+image::..\images\seq2seq.png[]
+
+=== Encoder\Decoder
+
+An encoder neural network reads and encodes a source sentence into a fixed-length vector. +
+A decoder outputs a translation from the encoded vector. +
+The whole encoder–decoder system, is jointly trained to maximize the probability of a correct translation given a source sentence.
+
+.Encoder Decoder architecture
+image::..\images\enc-dec.png[,70%]
+
+=== But, how?
+
+Encoder and the Decoder are both recurrent neural networks (RNN).
+A more complex types of RNN are usually used, such as Gated recurrent units (GRU) & Long-Short-Term-Memory (LSTM).
+
+.Encoding “the cat likes to eat pizza”
+image::..\images\encoder-exp.png[]
+
+
+=== Long-Short-Term-Memory
+
+GNMT uses LSTMs for encoding and decoding. +
+The problem is, that deep (stacked) LSTMs are hard to train (vanishing\exploding gradient).
+
+
+=== Long-Short-Term-Memory
+
+.On the left: simple stacked LSTM layer. On the right: GNMT implementation of stacked LSTM layers with residual connections.
+image::..\images\res-lstm.png[]
+
+[.notes]
+--
+With residual connections, input to the bottom LSTM layer ( x_i^0 ’s to LSTM_1) 
+is element-wise added to the output from the bottom layer ( x_i^1 ’s). This sum is then fed to the top LSTM layer (LSTM_2) as the new input.
+--
+
+
+=== Attention
+
+The following visualization shows the progression of GNMT as it translates a Chinese sentence to English
+
+image::..\images\gnmt.gif[]
+
+[.notes]
+--
+First, the network encodes the Chinese words as a list of vectors, where each vector represents the meaning of all words read so far (“Encoder”). Once the entire sentence is read, the decoder begins, generating the English sentence one word at a time (“Decoder”). To generate the translated word at each step, the decoder pays attention to a weighted distribution over the encoded Chinese vectors most relevant to generate the English word (“Attention”; the blue link transparency represents how much the decoder pays attention to an encoded word).
+--
+
+== Model Architecture
+
+image::..\images\entire-model.png[]
+
+[.notes]
+--
+On the left is the encoder network, on the right is the decoder network, in the middle is the attention module. 
+
+The bottom encoder layer is bi-directional: the pink nodes gather information from left to right while the green
+nodes gather information from right to left. 
+
+The other layers of the encoder are uni-directional. 
+
+Residual connections start from the layer third from the bottom in the encoder and decoder. 
+
+The model is partitioned into multiple GPUs to speed up training. 
+
+We have 8 encoder LSTM layers (1 bi-directional layer and 7 uni-directional layers), and 8 decoder layers. 
+With this setting, one model replica is partitioned 8-ways and is placed on 8 different GPUs typically belonging to one host machine. 
+
+During training, the bottom bi-directional encoder layers compute in parallel first. Once both finish, the uni-directional encoder layers
+can start computing, each on a separate GPU. 
+
+To retain as much parallelism as possible during running the decoder layers, we use the bottom decoder layer output only for obtaining recurrent attention context, which is sent directly to all the remaining decoder layers. 
+
+The softmax layer is also partitioned and placed on multiple GPUs. 
+
+Depending on the output vocabulary size we either have them run on the same GPUs as the encoder and decoder networks, or have them run on a separate set of dedicated GPUs.
+--
+
+== Translation
+
+[width="100%", cols="1,5"]
+|====================
+| Input     | Uno no es lo que es por lo que escribe, sino por lo que ha leído. 
+| SMT       | One is not what is for what he writes, but for what he has read. 
+| GNMT      | You are not what you write, but what you have read. 
+| Human     | You are who you are not because of what you have written, but because of what you have read.
+|====================
+
+== Overall Results
+
+[width="70%",options="header"]
+|====================
+|Languages   | SMT | GNMT | Human | Improvement 
+
+|English->Spanish |4.885 |5.428  |5.504 |87%
+|English->French | 4.932 | 5.295 | 5.496 | 64%
+|English->Chinese | 4.035 | 4.594 | 4.987 | 58%
+|Spanish->English | 4.872 | 5.187 | 5.372 | 63%
+|French->English | 5.046 | 5.343 | 5.404 | 83%
+|Chinese->English | 3.694 | 4.263 | 4.636 | 60%
+
+|====================
+
+[.notes]
+--
+* results show that our model reduces translation errors by more than 60% compared to the PBMT model on
+these major pairs of languages
+
+* human perception of the translation quality. We asked
+human raters to rate translations in a three-way side-by-side comparison. 
+
+The three sides are from: 
+1) translations from the production phrase-based statistical translation system used by Google, 
+2) translations from our GNMT system 
+3) translations by humans fluent in both languages.
+
+--
+
+
+== Additional notes
+
+Google used this beast to provide **Zero-Shot translation**.
+
+image::..\images\zero-shot.gif[]
+
+[.notes]
+--
+The proposed architecture requires no change in the base GNMT system, but instead uses an additional “token” at the beginning of the input sentence to specify the required target language to translate to. 
+
+In addition to improving translation quality, our method also enables “Zero-Shot Translation” — translation between language pairs never seen explicitly by the system.
+
+Here’s how it works. 
+Let’s say we train a multilingual system with Japanese⇄English and Korean⇄English examples, shown by the solid blue lines in the animation. 
+Our multilingual system, with the same size as a single GNMT system, shares its parameters to translate between these four different language pairs. 
+This sharing enables the system to transfer the “translation knowledge” from one language pair to the others. 
+This transfer learning and the need to translate between multiple languages forces the system to better use its modeling power.
+
+This inspired us to ask the following question: Can we translate between a language pair which the system has never seen before? 
+An example of this would be translations between Korean and Japanese where Korean⇄Japanese examples were not shown to the system. 
+
+Impressively, the answer is yes — it can generate reasonable Korean⇄Japanese translations, even though it has never been taught to do so. 
+We call this “zero-shot” translation, shown by the yellow dotted lines in the animation. 
+To the best of our knowledge, this is the first time this type of transfer learning has worked in Machine Translation.
+
+--
+
+== Questions?
+
+image::..\images\que.gif[]
