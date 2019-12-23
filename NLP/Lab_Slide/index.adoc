@@ -78,8 +78,13 @@ image::../images/better.gif[,70%]
 
 === These are not the droids you are looking for
 
-We will use Levenshtien distance to filter all observations which are not __close__ enough to its reported bus station. +
-We defined __close__ any Levenshtien distance that is lower than `0.2`.
+We will use Levenshtien distance to filter all observations which are not __close__ enough to its reported bus station. 
+
+
+====
+We defined __close__ with Levenshtien distance < `0.2`.
+====
+
 
 === Results
 
@@ -124,4 +129,4 @@ We were able to compute a confusion matrix to represent the Levenshtien similari
 
 == Questions?
 
-image::..\images\que.gif[,90%]
+image::..\images\que.gif[,70%]

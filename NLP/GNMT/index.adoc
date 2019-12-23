@@ -207,4 +207,4 @@ To the best of our knowledge, this is the first time this type of transfer learn
 
 == Questions?
 
-image::..\images\que.gif[]
+image::..\images\que.gif[,70%]
