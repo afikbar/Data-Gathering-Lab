@@ -20,12 +20,11 @@ Given a sentence __T__, we seek the sentence __S__ from which the translator pro
 
 [.notes]
 --
-Given a sequence of text in a source language, there is no one single best translation of that text to another language. This is because of the natural ambiguity and flexibility of human language.
+* אין תרגום הכי טוב
 
-* Rule-based Machine Translation, or RBMT. +
-The key limitations of the classical machine translation approaches are both the expertise required to develop the rules, and the vast number of rules and exceptions required.
+* Rule-based Machine Translation: דורש מומחים והרבה מקרי קצה
 
-* The approach is data-driven, requiring only a corpus of examples with both source and target language text. This means linguists are not longer required to specify the rules of translation.
+* מבוסס נתונים, דוגמאות מתוייגות וללא צורך במומחים
 --
 
 
@@ -37,7 +36,7 @@ The strength of NMT lies in its ability to learn directly, in an end-to-end fash
 
 [.notes]
 --
-* Unlike the traditional phrase-based translation system which consists of many small sub-components that are tuned separately, neural machine translation attempts to build and train a single, large neural network that reads a sentence and outputs a correct translation.
+* מודל אחד המתאמן בכללותו. אין צורך בתתי-רכבים המאומנים בנפרד
 
 --
 
@@ -66,8 +65,7 @@ A decoder "translates" the encoded vector.
 
 The whole encoder–decoder system, is jointly trained to maximize the probability of a correct translation given a source sentence.
 
-.Encoder Decoder architecture
-image::..\images\enc-dec.png[,70%]
+image::..\images\enc-dec.png[,80%]
 
 === But, how?
 
