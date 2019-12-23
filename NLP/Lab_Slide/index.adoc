@@ -39,7 +39,7 @@ Reported `busStop` is incorrect, due to some possible system malfunction.
 
 image::../images/search.gif[,50%]
 
-In order to evaluate our predictions, we've accessed RTPI (Real Time Passenger Information) REST API service to collect the *true* location of each bus stop in our data.
+To evaluate our predictions, we've accessed RTPI API service to collect the *true* location of each bus stop in our data.
 
 == Textual Data Integration
 
