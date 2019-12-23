@@ -38,24 +38,27 @@ We decided to use Levenshtien distance (normalized) to calculate the distance be
 
 Levenshtein distance between two words is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.
 
+== Levenshtien On Data
+
+image::images/lev-hist.png[]
 
 == Improve the prediction
 
 We will use Levenshtien distance to filter all observations which are not __close__ enough to its reported bus station. 
 
+[NOTE]
+====
+We defined __close__ with Levenshtien distance < `0.5`.
+====
 
-We were able to improve our *best prediction* from Task 3.
 
-After applying the same __removal__ approach, that obtained the best results previously, we were able to improve our prediction by 10%, while using the integrated data.
-
-
-.MSE Comparsion of Removal method
-[width="50%",options="header"]
+.MSE Comparsion (Km^2^)
+[width="70%",options="header"]
 |====================
-|Task 2  | Task 3
+|Task 3  | Task 4
 
-|0.1189
 |0.10125
+|__0.2739__
 
 |====================
 
