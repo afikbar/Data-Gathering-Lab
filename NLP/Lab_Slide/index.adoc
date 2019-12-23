@@ -79,7 +79,7 @@ We defined __close__ any Levenshtien distance that is lower than `0.2`.
 
 === Results
 
-.MSE Comparsion (Km^^2)
+.MSE Comparsion (Km^2^)
 [width="70%",options="header"]
 |====================
 |Task 3  | Task 4
@@ -120,4 +120,4 @@ We were able to compute a confusion matrix to represent the Levenshtien similari
 
 == Questions?
 
-image::..\images\que.gif[]
+image::..\images\que.gif[,90%]
