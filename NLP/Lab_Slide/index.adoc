@@ -77,20 +77,15 @@ image::../images/better.gif[,70%]
 We will use Levenshtien distance to filter all observations which are not __close__ enough to its reported bus station. +
 We defined __close__ any Levenshtien distance that is lower than `0.2`.
 
-
-We were able to improve our prediction from previous tasks.
-
-After applying the same __removal__ approach, that obtained the best results previously, we were able to improve our prediction by 10%, while using the integrated data.
-
 === Results
 
-.MSE Comparsion (Squared Km)
+.MSE Comparsion (Km^^2)
 [width="70%",options="header"]
 |====================
 |Task 3  | Task 4
 
 |0.10125
-|*BETTER*
+|__BETTER__
 
 |====================
 
