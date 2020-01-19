@@ -10,7 +10,8 @@ Final Task
 
 == The Data
 
-`230 million` records from bus sensors within Dublin, between July 2017 to September 2018.
+`230 million` records from bus sensors within Dublin,
+between July 2017 to September 2018.
 
 
 
@@ -57,10 +58,21 @@ image::../images/stop-415-heatmap.png[,70%]
 * Estimation update is done via "online weighted average"
 --
 
+== Uncertain?
+
+image::..\images\word.gif[,80%]
+
+[.notes]
+--
+* Data uncertainty is an inherent property due to measurement inaccuracy, sampling discrepancy, or other errors
+* Data values are no longer atomic. uncertain data has to be summarized into atomic values. +
+Unfortunately, discrepancy in the summarized recorded values and the actual values could seriously affect the results
+--
 
 == Estimations
 
-For all estimations, we've used only reports with `atStop = True`.
+For all estimations, we've used only reports +
+with `atStop = True`.
 
 [.step]
 * Simple centroid
@@ -78,7 +90,8 @@ For all estimations, we've used only reports with `atStop = True`.
 The data is very dense. +
 -> bus reports near stations that aren't on their route.
 
-Instead of *restricting* K-Means algorithm, we will partition the data by `JourneyPatternId`. +
+Instead of *restricting* K-Means algorithm, +
+we will partition the data by `JourneyPatternId`. +
 This will allow convergence only to stations along the route.
 
 
@@ -114,108 +127,42 @@ underlying assumption is uniform distribution around the centroid.
 
 
 
-== 
+== Data Integration
 
+[.step]
+* We've accessed `Dublinked Open Data` to collect all route information (stations along route). 
+* To evaluate our predictions, we've collected the *true* location of each bus station.
 
-
-
-== YOU CAN'T HANDLE THE TRUTH!
-
-== These are not the droids you are looking for...
-
-
-== But, how can we REALLY know?
-
-image::../images/search.gif[,50%]
-
-To evaluate our predictions, we've accessed RTPI API service to collect the *true* location of each bus stop in our data.
-
-== Textual Data Integration
-
-* We've used "`HERE Maps`" REST-API to __reverse geocode__ (coordinates -> street address) all `atStop` observations from the data (`50 million`).
-
-* Then we've added (from RTPi) all the bus stations names, both in English & Gaeilge (Irish).
-
-We plan to calculate the __distance__ between the reported bus station name, and the actual street address derived from the coordinates.
 
 [.notes]
 --
-* The mentioned API has a strong limitation of 50 requests per second, if we were to retrieve all street addresses, it would've take two weeks.
-
-* We were able to reduce the amount of required requests from the API to `300,000`, by reducing the coordinates precision to 5 decimal degrees (`~1 squared meter` error).
-
-* This is under an assumption that most bus stations names are determined by the street they are located in.
-
+* Was used to filter data
+* For query optimization, we've created a static dump in ES.
 --
 
-== Text Distance
+== Results
 
-We used Levenshtien distance (normalized) to calculate the distance between names (street, bus station). 
-
-Levenshtein distance between two words is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.
-
-
-== Levenshtien On Data
-
-image::../images/lev-hist.png[]
-
-== Improve the prediction
-
-image::../images/better.gif[,70%]
-
-
-
-=== These are not the droids you are looking for
-
-We will use Levenshtien distance to filter all observations which are not __close__ enough to its reported bus station. 
-
-
-====
-We defined __close__ with Levenshtien distance < `0.5`.
-====
-
-
-=== Results
-
-.MSE Comparsion (Km^2^)
 [width="70%",options="header"]
 |====================
-|Task 3  | Task 4
+|Improvement  | RMSE (`meters`)
 
-|0.10125
-|__0.2739__
+|Centroid 
+|158.6048
 
+|K-Means 
+|458.3147
+
+|UK-Means (line)
+|458.3147
+
+|UK-Means (free)
+|458.3147
 |====================
 
-== Textual Analysis
 
-image::../images/word.gif[,80%]
+== Future work
 
-
-=== Name vs. Location
-
-Following our prediction task, we were interested in the relation between the textual & spatial distance.
-
-image::../images/analysis1.png[]
-
-[.notes]
---
-We computed the Levenshtien distance & hoversine distance from a between all bus stops (to all bus stops). +
-To visualize it, we will present a scatter plot for bus stop `7207`
---
-
-=== Gaeilge vs. English names
-
-Following our article presentation (GNMT), we were interested wether bus stations names have some similarity between English & Gaeilge (Irish).
-
-image::../images/analysis2.png[]
-
-[.notes]
---
-We were able to compute a confusion matrix to represent the Levenshtien similarity (normalized distance) between Gaeilge & English station names:
---
-
-
+[%notitle]
 == Questions?
 
-image::..\images\que.gif[,70%]
+image::..\images\que.gif[background,size=contain]

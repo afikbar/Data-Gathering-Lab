@@ -37,6 +37,8 @@ Following attributes are defaults for reveal.js. You are free to change or remov
 :revealjs_parallaxbackgroundsize: 
 :revealjs_customtheme: reveal.js/css/theme/solarized.css
 :revealjs_theme: solarized
+:revealjs_width: 1080
+:revealjs_margin: 0.05
 ////
 beige, blond, default, moon, night, serif, simple, sky, solarized
 ////
