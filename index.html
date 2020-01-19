@@ -36,13 +36,17 @@
 <body>
 
 <div class="flex">
-  <button class="block" onclick="myFunction('GNMT')">GNMT</button>
-  <button class="block" onclick="myFunction('Lab_Slide')">Lab</button>
+  <button class="block" onclick="myFunction('NLP/GNMT')">GNMT</button>
+  <button class="block" onclick="myFunction('NLP/Lab_Slide')">NLP Lab</button>
 </div>
+</div class="flex">
+    <button class="block" onclick="myFunction('Final/Lab_Slide')">Final Task</button>
+</div>
+
 
 <script>
 function myFunction(slide) {
-    var win = window.open(`https://afikbar.github.io/Data-Gathering-Lab/NLP/${slide}/index.html`, '_blank');
+    var win = window.open(`https://afikbar.github.io/Data-Gathering-Lab/${slide}/index.html`, '_blank');
 }
 </script>
 
