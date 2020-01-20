@@ -75,7 +75,7 @@ For all estimations, we've used only reports +
 with `atStop = True`.
 
 [.step]
-* Simple centroid
+* Filtered centroids
 * K-Means
 * UK-Means (line-moving)
 * UK-Means (free-moving)
@@ -83,6 +83,7 @@ with `atStop = True`.
 [.notes]
 --
 * Centroid is calculated per `busStop`.
+* Filtered centroids: Centroids -> filter by 100m -> centroids
 --
 
 === K-Means adaptation
@@ -152,7 +153,7 @@ underlying assumption is uniform distribution around the centroid.
 |====================
 |Improvement  | RMSE (`meters`)
 
-|Centroid 
+|Filter centroids
 |158.6048
 
 |K-Means 
