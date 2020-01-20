@@ -140,7 +140,8 @@ underlying assumption is uniform distribution around the centroid.
 * For query optimization, we've created a static dump in ES.
 --
 
-[%notitle, background-iframe="http://da2019w-1019.eastus.cloudapp.azure.com:5601/app/kibana#/dashboard/5c820d90-0ee8-11ea-920d-bd467305ad47?embed=true&_g=()"]
+
+[%notitle, background-iframe="http://da2019w-1019.eastus.cloudapp.azure.com:5601/app/kibana#/dashboard/58c241d0-3b5b-11ea-ab79-e1fb616a8ad9?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3A'2017-07-02T21%3A00%3A00.000Z'%2Cto%3A'2017-07-03T20%3A30%3A00.000Z'))"]
 == Kibana
 
 
