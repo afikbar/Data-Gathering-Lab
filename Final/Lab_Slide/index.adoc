@@ -140,6 +140,11 @@ underlying assumption is uniform distribution around the centroid.
 * For query optimization, we've created a static dump in ES.
 --
 
+[%notitle, background-iframe="http://da2019w-1019.eastus.cloudapp.azure.com:5601/app/kibana#/dashboard/5c820d90-0ee8-11ea-920d-bd467305ad47?embed=true&_g=()"]
+== Kibana
+
+
+
 == Results
 
 [width="70%",options="header"]
@@ -161,6 +166,18 @@ underlying assumption is uniform distribution around the centroid.
 
 
 == Future work
+
+[.step]
+* Web-app, to load batch data, that will estimate and visualize correct info (`busStop`, `atStop`).
+* Integrate K-Means & UK-Means to handle stream data
+* Allow different estimators to predict `busStop` & `atStop`.
+* Display distance to next stop, and possible ETA.
+
+[.notes]
+--
+With better estimations of atStop & busStop, we can now analyze the data much better, to predict congestions etc.
+--
+
 
 [%notitle]
 == Questions?
