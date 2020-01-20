@@ -65,7 +65,7 @@ image::..\images\word.gif[,80%]
 [.notes]
 --
 * Data uncertainty is an inherent property due to measurement inaccuracy, sampling discrepancy, or other errors
-* Data values are no longer atomic. uncertain data has to be summarized into atomic values. +
+* Data values are no longer discrete. uncertain data has to be summarized into atomic values. +
 Unfortunately, discrepancy in the summarized recorded values and the actual values could seriously affect the results
 --
 
