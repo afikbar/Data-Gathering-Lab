@@ -58,6 +58,7 @@ image::../images/stop-415-heatmap.png[,70%]
 * Estimation update is done via "online weighted average"
 --
 
+////
 == Uncertain?
 
 image::..\images\word.gif[,80%]
@@ -68,6 +69,7 @@ image::..\images\word.gif[,80%]
 * Data values are no longer discrete. uncertain data has to be summarized into atomic values. +
 Unfortunately, discrepancy in the summarized recorded values and the actual values could seriously affect the results
 --
+////
 
 == Estimations
 
@@ -142,10 +144,10 @@ underlying assumption is uniform distribution around the centroid.
 --
 
 
-//[%notitle, background-iframe="http://da2019w-1019.eastus.cloudapp.azure.com:5601/app/kibana#/dashboard/58c241d0-3b5b-11ea-ab79-e1fb616a8ad9?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3A'2017-07-02T21%3A00%3A00.000Z'%2Cto%3A'2017-07-03T20%3A30%3A00.000Z'))"]
+[%notitle, background-iframe="http://da2019w-1019.eastus.cloudapp.azure.com:5601/app/kibana#/dashboard/58c241d0-3b5b-11ea-ab79-e1fb616a8ad9?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3A'2017-07-02T21%3A00%3A00.000Z'%2Cto%3A'2017-07-03T20%3A30%3A00.000Z'))"]
 == Kibana
 
-http://da2019w-1019.eastus.cloudapp.azure.com:5601/app/kibana#/dashboard/58c241d0-3b5b-11ea-ab79-e1fb616a8ad9?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3A'2017-07-02T21%3A00%3A00.000Z'%2Cto%3A'2017-07-03T20%3A30%3A00.000Z'))[Map]
+//http://da2019w-1019.eastus.cloudapp.azure.com:5601/app/kibana#/dashboard/58c241d0-3b5b-11ea-ab79-e1fb616a8ad9?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3A'2017-07-02T21%3A00%3A00.000Z'%2Cto%3A'2017-07-03T20%3A30%3A00.000Z'))[Map]
 
 == Results
 
